@@ -97,14 +97,14 @@ export default function Footer() {
         <div className="border-t border-gray-200 pt-6 md:pt-8">
           <div className="text-[10px] md:text-xs text-gray-500 space-y-1">
             <p>
-              <span className="font-medium text-gray-700">상호명:</span> 척척밥상 주식회사
+              <span className="font-medium text-gray-700">상호명:</span> (주)척척밥상
             </p>
             <p>
-              <span className="font-medium text-gray-700">대표:</span> 홍길동 |{' '}
+              <span className="font-medium text-gray-700">대표:</span> 육신동/제준경 |{' '}
               <span className="font-medium text-gray-700">사업자번호:</span> 123-45-67890
             </p>
             <p className="hidden md:block">
-              <span className="font-medium text-gray-700">주소:</span> 서울특별시 강남구 테헤란로 123
+              <span className="font-medium text-gray-700">주소:</span> 인천 남동구 남촌시장로 20 (남촌동, 남촌농산물도매시장)
             </p>
           </div>
           <p className="text-[10px] md:text-xs text-gray-400 mt-3 md:mt-4">
