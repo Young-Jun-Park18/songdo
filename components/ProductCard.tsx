@@ -16,25 +16,24 @@ export default function ProductCard({ product }: ProductCardProps) {
   const remaining = product.limit - product.current;
   const progressPercentage = Math.min((product.current / product.limit) * 100, 100);
   
-  // 할인율 계산 (임의로 10~30% 사이)
   const discountRate = Math.floor(Math.random() * 20) + 10;
 
   return (
     <div className="group cursor-pointer">
       {/* 이미지 영역 */}
-      <div className="relative aspect-square mb-3 overflow-hidden rounded-lg bg-gray-50">
+      <div className="relative aspect-square mb-2 md:mb-3 overflow-hidden rounded-lg bg-gray-50">
         {/* 품절 오버레이 */}
         {isSoldOut && (
           <div className="absolute inset-0 bg-white/90 flex items-center justify-center z-10">
-            <span className="text-gray-400 font-medium">품절</span>
+            <span className="text-gray-400 text-sm md:text-base font-medium">품절</span>
           </div>
         )}
 
         {/* 할인 배지 */}
         {!isSoldOut && progressPercentage > 50 && (
-          <div className="absolute top-3 left-3 z-10">
-            <span className="bg-gradient-to-r from-green-500 to-emerald-500 text-white text-xs font-bold px-2 py-1 rounded">
-              ~{discountRate}% 할인
+          <div className="absolute top-2 left-2 md:top-3 md:left-3 z-10">
+            <span className="bg-gradient-to-r from-green-500 to-emerald-500 text-white text-[10px] md:text-xs font-bold px-1.5 py-0.5 md:px-2 md:py-1 rounded">
+              ~{discountRate}%
             </span>
           </div>
         )}
@@ -48,7 +47,7 @@ export default function ProductCard({ product }: ProductCardProps) {
         ) : (
           <div className="w-full h-full flex items-center justify-center">
             <svg
-              className="w-16 h-16 text-gray-200"
+              className="w-12 h-12 md:w-16 md:h-16 text-gray-200"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -63,9 +62,9 @@ export default function ProductCard({ product }: ProductCardProps) {
           </div>
         )}
 
-        {/* 장바구니 버튼 (호버시) */}
+        {/* 장바구니 버튼 - 데스크톱만 */}
         {!isSoldOut && (
-          <button className="absolute bottom-3 right-3 w-10 h-10 bg-white rounded-full shadow-md flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+          <button className="hidden md:flex absolute bottom-3 right-3 w-10 h-10 bg-white rounded-full shadow-md items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
             <svg
               className="w-5 h-5 text-gray-700"
               fill="none"
@@ -86,23 +85,23 @@ export default function ProductCard({ product }: ProductCardProps) {
       {/* 상품 정보 */}
       <div>
         {/* 상품명과 재고 개수 */}
-        <div className="flex items-start justify-between gap-2 mb-2">
-          <h3 className="text-sm text-gray-900 line-clamp-2 leading-tight group-hover:underline flex-1">
+        <div className="flex items-start justify-between gap-1 md:gap-2 mb-1 md:mb-2">
+          <h3 className="text-xs md:text-sm text-gray-900 line-clamp-2 leading-tight group-hover:underline flex-1">
             {product.name}
           </h3>
           {!isSoldOut && (
-            <span className="text-xs text-gray-500 whitespace-nowrap mt-0.5">
-              수량 {remaining}개
+            <span className="text-[10px] md:text-xs text-gray-500 whitespace-nowrap mt-0.5">
+              {remaining}개
             </span>
           )}
         </div>
         
         {/* 가격 */}
-        <div className="flex items-baseline gap-1.5">
-          <span className="text-lg font-bold text-gray-900">
+        <div className="flex items-baseline gap-1">
+          <span className="text-base md:text-lg font-bold text-gray-900">
             {parseInt(product.price).toLocaleString()}
           </span>
-          <span className="text-sm text-gray-500">원</span>
+          <span className="text-xs md:text-sm text-gray-500">원</span>
         </div>
       </div>
     </div>

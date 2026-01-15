@@ -5,7 +5,6 @@ import { useEffect, useState } from 'react';
 export default function ScrollToTop() {
   const [isVisible, setIsVisible] = useState(false);
 
-  // 스크롤 위치 감지
   useEffect(() => {
     const toggleVisibility = () => {
       if (window.scrollY > 300) {
@@ -22,7 +21,6 @@ export default function ScrollToTop() {
     };
   }, []);
 
-  // 맨 위로 스크롤
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -35,11 +33,11 @@ export default function ScrollToTop() {
       {isVisible && (
         <button
           onClick={scrollToTop}
-          className="fixed bottom-8 right-8 z-50 w-12 h-12 bg-white border border-gray-300 rounded-full shadow-lg hover:border-gray-400 transition-all duration-300 flex items-center justify-center group"
+          className="fixed bottom-4 right-4 md:bottom-8 md:right-8 z-50 w-11 h-11 md:w-12 md:h-12 bg-white border border-gray-300 rounded-full shadow-lg hover:border-gray-400 transition-all duration-300 flex items-center justify-center group"
           aria-label="맨 위로"
         >
           <svg
-            className="w-6 h-6 text-gray-900 transform group-hover:-translate-y-0.5 transition-transform"
+            className="w-5 h-5 md:w-6 md:h-6 text-gray-900 transform group-hover:-translate-y-0.5 transition-transform"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"

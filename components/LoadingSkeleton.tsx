@@ -29,7 +29,7 @@ export default function LoadingSkeleton() {
       {/* 오른쪽 상품 영역 스켈레톤 */}
       <div className="flex-1">
         {/* 상단 정렬 바 스켈레톤 */}
-        <div className="flex items-center justify-between mb-6 pb-4 border-b">
+        <div className="flex items-center justify-between mb-6 pb-4 border-b border-gray-300">
           <div className="space-y-2">
             <div className="h-7 bg-gray-200 rounded w-32 animate-pulse" />
             <div className="h-4 bg-gray-100 rounded w-48 animate-pulse" />

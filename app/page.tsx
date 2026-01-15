@@ -62,7 +62,7 @@ export default function Home() {
     return (
       <div className="min-h-screen bg-white flex flex-col">
         <Header />
-        <main className="flex-1 max-w-[1280px] mx-auto w-full px-4 py-6">
+        <main className="flex-1 max-w-[1280px] mx-auto w-full px-4 py-4 md:py-6">
           <LoadingSkeleton />
         </main>
         <Footer />
@@ -74,9 +74,9 @@ export default function Home() {
     return (
       <div className="min-h-screen bg-white flex flex-col">
         <Header />
-        <main className="flex-1 flex items-center justify-center">
+        <main className="flex-1 flex items-center justify-center px-4">
           <div className="text-center p-8">
-            <p className="text-xl text-gray-900 mb-4">{error}</p>
+            <p className="text-lg md:text-xl text-gray-900 mb-4">{error}</p>
             <button
               onClick={() => window.location.reload()}
               className="px-6 py-2 bg-green-600 text-white rounded hover:bg-green-700"
@@ -94,9 +94,9 @@ export default function Home() {
     <div className="min-h-screen bg-white flex flex-col">
       <Header />
       
-      <main className="flex-1 max-w-[1280px] mx-auto w-full px-4 py-6">
-        <div className="flex gap-6">
-          {/* 왼쪽 필터 사이드바 */}
+      <main className="flex-1 max-w-[1280px] mx-auto w-full px-4 py-4 md:py-6">
+        <div className="flex gap-4 md:gap-6">
+          {/* 왼쪽 필터 사이드바 - 데스크톱만 */}
           <aside className="hidden lg:block w-64 flex-shrink-0">
             <div className="sticky top-24">
               {/* 카테고리 필터 */}
@@ -140,34 +140,52 @@ export default function Home() {
           {/* 오른쪽 상품 영역 */}
           <div className="flex-1">
             {/* 상단 정렬 바 */}
-            <div className="flex items-center justify-between mb-6 pb-4 border-b border-gray-300">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4 md:mb-6 pb-3 md:pb-4 border-b border-gray-100">
               <div>
-                <h2 className="text-xl font-bold text-gray-900">
+                <h2 className="text-lg md:text-xl font-bold text-gray-900">
                   전체 {products.length}개
                 </h2>
-                <p className="text-sm text-gray-500 mt-1">
+                <p className="text-xs md:text-sm text-gray-500 mt-1">
                   신선한 식재료를 공동구매로 더 저렴하게
                 </p>
               </div>
-              <div className="hidden md:flex items-center gap-2">
-                {['추천순', '신상품순', '판매량순', '낮은가격순', '높은가격순'].map((sort) => (
-                  <button
-                    key={sort}
-                    onClick={() => setSortBy(sort)}
-                    className={`px-3 py-1.5 text-sm rounded transition-colors ${
-                      sortBy === sort
-                        ? 'bg-green-600 text-white'
-                        : 'text-gray-600 hover:bg-gray-100'
-                    }`}
-                  >
-                    {sort}
-                  </button>
-                ))}
+
+              {/* 모바일 - 드롭다운 / 데스크톱 - 버튼들 */}
+              <div className="flex items-center gap-2">
+                {/* 모바일용 셀렉트 */}
+                <select
+                  value={sortBy}
+                  onChange={(e) => setSortBy(e.target.value)}
+                  className="md:hidden px-3 py-2 text-sm border border-gray-200 rounded focus:outline-none focus:border-green-500"
+                >
+                  <option>추천순</option>
+                  <option>신상품순</option>
+                  <option>판매량순</option>
+                  <option>낮은가격순</option>
+                  <option>높은가격순</option>
+                </select>
+
+                {/* 데스크톱용 버튼들 */}
+                <div className="hidden md:flex items-center gap-2">
+                  {['추천순', '신상품순', '판매량순', '낮은가격순', '높은가격순'].map((sort) => (
+                    <button
+                      key={sort}
+                      onClick={() => setSortBy(sort)}
+                      className={`px-3 py-1.5 text-sm rounded transition-colors ${
+                        sortBy === sort
+                          ? 'bg-green-600 text-white'
+                          : 'text-gray-600 hover:bg-gray-100'
+                      }`}
+                    >
+                      {sort}
+                    </button>
+                  ))}
+                </div>
               </div>
             </div>
 
-            {/* 상품 그리드 - 한 행에 3개씩 */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
+            {/* 상품 그리드 */}
+            <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4 lg:gap-6">
               {products.map((product) => (
                 <ProductCard key={product.index} product={product} />
               ))}
